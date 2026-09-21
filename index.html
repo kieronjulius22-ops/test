@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Good Thyme Café | Milnerton</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: #f7f3eb;
+  color: #171611;
+  font-family: "DM Sans", sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* NAVIGATION */
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  padding: 22px 6%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  transition: 0.3s;
+}
+
+nav.scrolled {
+  background: rgba(20,19,16,0.96);
+  padding: 15px 6%;
+}
+
+.logo {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.nav-links {
+  display: flex;
+  gap: 35px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.nav-links a:hover {
+  color: #d7b56d;
+}
+
+.reserve {
+  border: 1px solid white;
+  padding: 12px 18px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+/* HERO */
+
+.hero {
+  height: 100vh;
+  min-height: 650px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0 8%;
+  color: white;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0,0,0,0.72),
+      rgba(0,0,0,0.15)
+    ),
+    url("https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=2200&q=90")
+    center/cover;
+
+  transform: scale(1.03);
+}
+
+.hero-content {
+  position: relative;
+  max-width: 750px;
+  margin-top: 70px;
+}
+
+.small-title {
+  color: #d9bd7d;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: 11px;
+}
+
+.hero h1 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(70px, 10vw, 140px);
+  line-height: 0.8;
+  margin: 22px 0;
+}
+
+.hero p {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 22px;
+  line-height: 1.5;
+  max-width: 520px;
+  color: #eee;
+}
+
+.buttons {
+  margin-top: 35px;
+  display: flex;
+  gap: 15px;
+}
+
+.button {
+  padding: 15px 23px;
+  background: white;
+  color: #171611;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-size: 11px;
+}
+
+.button.dark {
+  background: transparent;
+  color: white;
+  border: 1px solid rgba(255,255,255,0.7);
+}
+
+/* INTRO */
+
+.intro {
+  padding: 120px 8%;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 8%;
+  align-items: center;
+}
+
+.section-label {
+  color: #ae8a4c;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 11px;
+}
+
+h2 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(48px, 6vw, 78px);
+  line-height: 0.95;
+  margin: 18px 0 25px;
+}
+
+.text {
+  color: #777267;
+  line-height: 1.9;
+  font-size: 15px;
+  max-width: 540px;
+}
+
+.main-image {
+  width: 100%;
+  height: 570px;
+  object-fit: cover;
+}
+
+/* MENU */
+
+.menu {
+  background: #eee8dc;
+  padding: 110px 8%;
+}
+
+.menu-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-bottom: 55px;
+}
+
+.menu-heading p {
+  max-width: 390px;
+  color: #777267;
+  line-height: 1.7;
+}
+
+.food-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.food-card {
+  background: white;
+  overflow: hidden;
+}
+
+.food-card img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  transition: 0.6s;
+}
+
+.food-card:hover img {
+  transform: scale(1.05);
+}
+
+.food-info {
+  padding: 27px;
+}
+
+.food-info h3 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 30px;
+  margin-bottom: 8px;
+}
+
+.food-info p {
+  color: #777267;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* EXPERIENCE */
+
+.experience {
+  padding: 120px 8%;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 8%;
+  align-items: center;
+}
+
+.experience img {
+  width: 100%;
+  height: 600px;
+  object-fit: cover;
+}
+
+.quote {
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(36px, 4vw, 60px);
+  line-height: 1.05;
+  margin: 30px 0;
+}
+
+.details {
+  margin-top: 35px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.detail {
+  padding: 20px 0;
+  border-top: 1px solid #d6cebf;
+}
+
+.detail strong {
+  display: block;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 7px;
+}
+
+.detail span {
+  color: #777267;
+  font-size: 13px;
+}
+
+/* GALLERY */
+
+.gallery {
+  padding: 0 3% 110px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: 1.2fr .8fr .8fr;
+  grid-template-rows: 250px 250px;
+  gap: 10px;
+}
+
+.gallery-grid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gallery-big {
+  grid-row: span 2;
+}
+
+/* CALL TO ACTION */
+
+.cta {
+  margin: 0 3% 80px;
+  height: 500px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  overflow: hidden;
+}
+
+.cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      rgba(0,0,0,0.5),
+      rgba(0,0,0,0.65)
+    ),
+    url("https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=2200&q=90")
+    center/cover;
+}
+
+.cta-content {
+  position: relative;
+  z-index: 2;
+}
+
+.cta h2 {
+  font-size: 75px;
+}
+
+/* FOOTER */
+
+footer {
+  background: #171611;
+  color: white;
+  padding: 70px 8% 30px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+footer h3 {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 45px;
+}
+
+footer p {
+  color: #aaa59b;
+  line-height: 1.8;
+  font-size: 13px;
+}
+
+.copyright {
+  border-top: 1px solid #39372f;
+  margin-top: 50px;
+  padding-top: 20px;
+  color: #777267;
+  font-size: 11px;
+}
+
+/* MOBILE */
+
+@media(max-width: 800px) {
+
+  .nav-links,
+  .reserve {
+    display: none;
+  }
+
+  .hero {
+    padding: 0 7%;
+  }
+
+  .hero h1 {
+    font-size: 75px;
+  }
+
+  .intro,
+  .experience {
+    grid-template-columns: 1fr;
+    padding: 80px 7%;
+  }
+
+  .main-image,
+  .experience img {
+    height: 450px;
+  }
+
+  .menu {
+    padding: 80px 7%;
+  }
+
+  .menu-heading {
+    display: block;
+  }
+
+  .food-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 220px 220px 220px;
+  }
+
+  .gallery-big {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+
+  .cta h2 {
+    font-size: 55px;
+  }
+
+  .footer-content {
+    display: block;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<nav id="navbar">
+
+  <a href="#" class="logo">Good Thyme</a>
+
+  <div class="nav-links">
+    <a href="#story">Our Story</a>
+    <a href="#menu">Menu</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#visit">Visit</a>
+  </div>
+
+  <a href="#visit" class="reserve">
+    Reserve a Table
+  </a>
+
+</nav>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+  <div class="hero-content">
+
+    <div class="small-title">
+      Milnerton · Cape Town
+    </div>
+
+    <h1>
+      Good Thyme
+    </h1>
+
+    <p>
+      Beautiful food, warm hospitality and good company,
+      brought together in the heart of Milnerton.
+    </p>
+
+    <div class="buttons">
+
+      <a href="#menu" class="button">
+        Explore Menu
+      </a>
+
+      <a href="#visit" class="button dark">
+        Visit Us
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- INTRO -->
+
+<section class="intro" id="story">
+
+  <div>
+
+    <div class="section-label">
+      The Good Thyme Experience
+    </div>
+
+    <h2>
+      Made for slow afternoons & late dinners.
+    </h2>
+
+    <p class="text">
+      Step inside Good Thyme for a relaxed but refined
+      dining experience. Beautiful plates, warm hospitality
+      and an atmosphere designed for spending time together.
+    </p>
+
+  </div>
+
+  <img
+    class="main-image"
+    src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1400&q=90"
+    alt="Beautifully presented food"
+  >
+
+</section>
+
+
+<!-- MENU -->
+
+<section class="menu" id="menu">
+
+  <div class="menu-heading">
+
+    <div>
+
+      <div class="section-label">
+        A Taste of Good Thyme
+      </div>
+
+      <h2>
+        Signature Plates
+      </h2>
+
+    </div>
+
+    <p>
+      A glimpse of the flavours and presentation
+      you can expect when dining with us.
+    </p>
+
+  </div>
+
+
+  <div class="food-grid">
+
+    <div class="food-card">
+
+      <img
+        src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1200&q=90"
+        alt="Fresh gourmet bowl"
+      >
+
+      <div class="food-info">
+
+        <h3>
+          Garden & Grain
+        </h3>
+
+        <p>
+          Seasonal vegetables, fresh herbs and
+          carefully balanced textures.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="food-card">
+
+      <img
+        src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=1200&q=90"
+        alt="Gourmet pasta"
+      >
+
+      <div class="food-info">
+
+        <h3>
+          House Pasta
+        </h3>
+
+        <p>
+          Comforting, generous and finished
+          with a chef's touch.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="food-card">
+
+      <img
+        src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=1200&q=90"
+        alt="Gourmet salmon"
+      >
+
+      <div class="food-info">
+
+        <h3>
+          Ocean & Herb
+        </h3>
+
+        <p>
+          Beautifully plated seafood with
+          bright seasonal flavours.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- EXPERIENCE -->
+
+<section class="experience">
+
+  <img
+    src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1500&q=90"
+    alt="Elegant restaurant interior"
+  >
+
+  <div>
+
+    <div class="section-label">
+      More Than A Meal
+    </div>
+
+    <div class="quote">
+      “The table is where good food becomes a good memory.”
+    </div>
+
+    <p class="text">
+      Whether you're joining us for a relaxed lunch,
+      dinner with friends or a special occasion,
+      Good Thyme is made to feel welcoming and memorable.
+    </p>
+
+    <div class="details">
+
+      <div class="detail">
+        <strong>Location</strong>
+        <span>Milnerton, Cape Town</span>
+      </div>
+
+      <div class="detail">
+        <strong>Price Guide</strong>
+        <span>R100–R200</span>
+      </div>
+
+      <div class="detail">
+        <strong>Atmosphere</strong>
+        <span>Warm · Refined · Relaxed</span>
+      </div>
+
+      <div class="detail">
+        <strong>Bookings</strong>
+        <span>Reserve before your visit</span>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- GALLERY -->
+
+<section class="gallery" id="gallery">
+
+  <div class="gallery-grid">
+
+    <img
+      class="gallery-big"
+      src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1400&q=90"
+      alt="Restaurant atmosphere"
+    >
+
+    <img
+      src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=1000&q=90"
+      alt="Pasta"
+    >
+
+    <img
+      src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1000&q=90"
+      alt="Fresh food"
+    >
+
+    <img
+      src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=1000&q=90"
+      alt="Salmon"
+    >
+
+    <img
+      src="https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?auto=format&fit=crop&w=1000&q=90"
+      alt="Restaurant food"
+    >
+
+  </div>
+
+</section>
+
+
+<!-- RESERVATION -->
+
+<section class="cta" id="visit">
+
+  <div class="cta-content">
+
+    <div class="small-title">
+      Your Table Awaits
+    </div>
+
+    <h2>
+      Come for good food.
+    </h2>
+
+    <a
+      href="tel:+27000000000"
+      class="button"
+    >
+      Call To Reserve
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+  <div class="footer-content">
+
+    <div>
+
+      <h3>
+        Good Thyme
+      </h3>
+
+      <p>
+        Milnerton · Cape Town
+      </p>
+
+    </div>
+
+    <div>
+
+      <p>
+        <strong>Good food.</strong><br>
+        Good company.<br>
+        Good Thyme.
+      </p>
+
+    </div>
+
+  </div>
+
+  <div class="copyright">
+    © 2026 Good Thyme Café
+  </div>
+
+</footer>
+
+
+<script>
+
+window.addEventListener("scroll", function() {
+
+  const nav = document.getElementById("navbar");
+
+  if (window.scrollY > 50) {
+    nav.classList.add("scrolled");
+  } else {
+    nav.classList.remove("scrolled");
+  }
+
+});
+
+</script>
+
+</body>
+</html>
